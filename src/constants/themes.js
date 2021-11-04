@@ -7,10 +7,10 @@ export const COLORS = {
     primary:"royalblue",
     strongPrimary:"#C7444B", //Change this to a darker royal blue version
     secondary:"#FAFAFA",
-    warning:"#F43F5E",
-    success:"#14B8A6",
-    gray:"",
-    alert:""
+    warning:"#FCC107",
+    danger:"#DC3545",
+    success:"#28A745",
+    gray:"#6C757D",
 }
 
 export const FONTS = {

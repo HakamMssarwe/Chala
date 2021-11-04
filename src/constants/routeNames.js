@@ -1,1 +1,5 @@
 export const AUTH = "Auth"
+export const SIGNUP = "Signup"
+export const LOGIN = "Login"
+export const SEND_CODE = "Send Code"
+export const VERIFY_CODE = "Verify Code"

@@ -2,14 +2,6 @@ import { COLORS, FONTS, SIZES, windowHeight } from "../../constants/themes";
 
 export default {
 
-    loginMenuContainer:{
-        width:"100%",
-        height:windowHeight * 0.2,
-        justifyContent:"center",
-        alignItems:"center",
-        marginTop:"10%"
-
-    },
     signupMenuContainer:{
         width:"100%",
         height:windowHeight * 0.2,

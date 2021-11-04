@@ -5,7 +5,7 @@ import { COLORS, windowHeight } from '../constants/themes'
 
 export default function Container({style,children}) {
     return (
-        <SafeAreaView style={{...style,width:"100%",height:windowHeight,alignItems:"center",position:"relative"}}>
+        <SafeAreaView style={{...style,flex:1,width:"100%",height:windowHeight,alignItems:"center",position:"relative"}}>
             <StatusBar backgroundColor={COLORS.strongPrimary} animated={true} hidden={true} />
             {children}
         </SafeAreaView>
