@@ -46,15 +46,6 @@ export default function Auth({navigation}) {
             <WhiteLogo/>
             </TouchableOpacity>
             </Animated.View>
-        {/* <Animated.View style={{...style.signupMenuContainer,opacity:signupMenuOpacity,display:signupMenuIsOpen? "flex" : "none"}}>
-             <TextInput onPress={e => {console.log("test")}} style={style.input} placeholder="First Name" placeholderTextColor={COLORS.secondary}/>
-             <TextInput style={style.input} placeholder="Last Name" placeholderTextColor={COLORS.secondary}/>
-             <TextInput style={style.input} placeholder="Email" placeholderTextColor={COLORS.secondary}/>
-             <TextInput style={style.input} placeholder="Password" placeholderTextColor={COLORS.secondary}/>
-             <TextInput style={style.input} placeholder="Confirm Password" placeholderTextColor={COLORS.secondary}/>
-            <ButtonOutline isLoading={isSigningUp} onPress={e => setIsSigningUp(true)} style={{width:"75%",borderColor:COLORS.secondary,backgroundColor:"transparent",marginTop:"2%"}}>Join us</ButtonOutline>
-        </Animated.View> */}
-
         <Animated.View style={{...style.containerButtons,transform:[{translateY:containerButtonY}]}}>
         <ButtonOutline onPress={e => handleNavigation(SIGNUP)} style={{width:"75%",marginBottom:"5%"}}>Sign up</ButtonOutline>
         <ButtonFill onPress={e => handleNavigation(LOGIN)} style={{width:"75%"}}>Login</ButtonFill>
