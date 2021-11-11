@@ -8,3 +8,7 @@ export const LOGIN = "Login"
 export const SEND_CODE = "Send Code"
 export const VERIFY_CODE = "Verify Code"
 export const UPDATE_PASSWORD = "Update Password"
+
+
+//SIGNUP
+export const SIGNUP_CODE_SENT = "Signup Code Sent"

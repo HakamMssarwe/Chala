@@ -23,12 +23,10 @@ export default function UpdatePassword({navigation}) {
 
 
     const handleUpdatingPassword = () =>{
-        console.log(newPassword.valueOf)
-
          //Password Validation
         if (newPassword === "" || confirmPassword === "")
         {
-            setErrorMessage("Please do not leave empty fields.")
+            setErrorMessage("Please do not leave any empty fields.")
             return;     
         }
 
