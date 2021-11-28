@@ -14,6 +14,8 @@ import { AUTH, LOGIN, SIGNUP, SIGNUP_CODE_SENT } from '../../constants/routeName
 import AppText from '../../components/AppText'
 import ErrorMessage from '../../components/ErrorMessage'
 import { StringIsAlphabetic, ValidateEmail, ValidatePassword } from '../../utils/functions/StaticFunctions'
+import HttpRequest from '../../utils/functions/HttpRequest'
+import AnimatedLottieView from 'lottie-react-native'
 
 
 export default function Signup({navigation}) {
@@ -23,10 +25,10 @@ export default function Signup({navigation}) {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [confirmPassword,setConfirmPassword] = useState("");
-    const [errorMessage,setErrorMessage] = useState("Something went wrong.");
+    const [errorMessage,setErrorMessage] = useState("");
+    const [loading,setLoading] = useState(false);
 
-    const handleSignup = () =>{
-
+    const handleSignup = async() =>{
     //Validation
     if (firstName == "" || lastName == "" || email == "" || password == "" || confirmPassword == "")
     {
@@ -55,21 +57,7 @@ export default function Signup({navigation}) {
         return;
     }
 
-    //Call API & Check if email is already in use
-
-    if (!false)
-    {
-        setErrorMessage("This email is already in use by another member.")
-        return;
-    }
-
-
     //Validate Password
-    if (password !== confirmPassword)
-    {
-       setErrorMessage("Passwords do not match.")
-       return;
-    }
 
     var passwordValidationResult = ValidatePassword(password)
 
@@ -79,29 +67,39 @@ export default function Signup({navigation}) {
         return;
     }
 
-    //Make the API call and sign-up the user
-    if (400)
+    if (password !== confirmPassword)
     {
-        setErrorMessage("Error Message.");
+       setErrorMessage("Passwords do not match.")
+       return;
+    }
+
+
+    setLoading(true);
+    let response = await HttpRequest("/users/create","POST",{Email:email,FirstName:firstName,LastName:lastName,Password:password})
+    //409 == conflict
+    if (response.status === 409)
+    {
+        setLoading(false);
+        setErrorMessage("This email is already in use by another member.")
         return;
     }
-    else if (200)
+
+    if (200)
     {
         navigation.navigate(SIGNUP_CODE_SENT);
         return;
     }
     else
     {
+        setLoading(false);
         setErrorMessage("Something went wrong.");
         return;
     }
-        
-    }
+    };
 
-    return (
-        <Container>
-        <Banner/>
-        <ScrollView style={{width:"100%",height:"100%"}} contentContainerStyle={{justifyContent:"center",alignItems:"center",flexGrow:1}}>
+    return loading? <AnimatedLottieView source={require('../../assets/splash/loading.json')} autoPlay loop /> :<Container>
+            <Banner/>
+            <ScrollView style={{width:"100%",height:"100%"}} contentContainerStyle={{justifyContent:"center",alignItems:"center",flexGrow:1}}>
         <Animated.View style={{width:"100%",height:"30%"}}>
             <TouchableOpacity onPress={e => navigation.navigate(AUTH)}>
             <WhiteLogo/>
@@ -110,11 +108,12 @@ export default function Signup({navigation}) {
         <TextInput onChangeText={setFirstName} value={firstName} style={style.input} placeholder="First Name" placeholderTextColor={COLORS.secondary}/>
         <TextInput onChangeText={setLastName} value={lastName} style={style.input} placeholder="Last Name" placeholderTextColor={COLORS.secondary} />
         <TextInput onChangeText={setEmail} value={email} style={style.input} placeholder="Email" placeholderTextColor={COLORS.secondary} />
-        <TextInput onChangeText={setPassword} value={password} style={style.input} placeholder="Password" placeholderTextColor={COLORS.secondary} />
-        <TextInput onChangeText={setConfirmPassword} value={confirmPassword} style={style.input} placeholder="Confirm Password" placeholderTextColor={COLORS.secondary} />
+        <TextInput onChangeText={setPassword} value={password} style={style.input} placeholder="Password" placeholderTextColor={COLORS.secondary} secureTextEntry/>
+        <TextInput onChangeText={setConfirmPassword} value={confirmPassword} style={style.input} placeholder="Confirm Password" placeholderTextColor={COLORS.secondary} secureTextEntry/>
         <ErrorMessage style={{color:COLORS.secondary,fontSize:18,textAlign:"center"}}>{errorMessage}</ErrorMessage>
         <ButtonFill onPress={handleSignup} style={{width:"75%",borderColor:COLORS.primary,marginTop:"2%"}}>Join us</ButtonFill>
         </ScrollView>
         </Container>
-    )
-}
+    }
+        
+

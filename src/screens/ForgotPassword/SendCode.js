@@ -39,13 +39,6 @@ export default function SendCode({navigation}) {
         <AppText style={{color:COLORS.secondary,width:"80%",textAlign:"center",fontSize:16}}>Enter the email address associated with your account.</AppText>
         <TextInput style={style.input} placeholder="Email" placeholderTextColor={COLORS.secondary}/>
         <ButtonFill onPress={handleSendingCode} style={{width:"75%",borderColor:COLORS.primary,marginTop:"2%"}}>Next</ButtonFill>
-        
-
-        {/* <AppText style={{color:COLORS.secondary,width:"80%",textAlign:"center",fontSize:16}}>Enter the verification code we just sent you on your email address.</AppText> */}
-               {/* <TextInput style={style.input} placeholder="Password" placeholderTextColor={COLORS.secondary} secureTextEntry/> */}
-        {/* <ErrorMessage style={{color:COLORS.secondary,fontSize:18}}>{errorMessage}</ErrorMessage> */}
-        {/* <ButtonFill  style={{width:"75%",borderColor:COLORS.primary,marginTop:"2%"}}>Verify</ButtonFill> */}
-  
         </ScrollView>
         </Container>
     )

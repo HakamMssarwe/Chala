@@ -10,19 +10,23 @@ import WhiteLogo from '../../components/WhiteLogo'
 import PrimaryLogo from '../../components/PrimaryLogo'
 import { COLORS, windowHeight } from '../../constants/themes'
 import style from './style'
-import { AUTH, FORGOT_PASSWORD, LOGIN, SEND_CODE, SIGNUP } from '../../constants/routeNames'
+import { AUTH, FIRST_TIME_LOGIN, FORGOT_PASSWORD, LOGIN, SEND_CODE, SIGNUP, SIGNUP_CODE_VERIFY } from '../../constants/routeNames'
 import AppText from '../../components/AppText'
 import ErrorMessage from '../../components/ErrorMessage'
 import { ValidateEmail } from '../../utils/functions/StaticFunctions'
-
+import HttpRequest from '../../utils/functions/HttpRequest'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch, useSelector } from 'react-redux'
+import { setApp } from '../../redux/slices/AppSlice'
 
 export default function Login({navigation}) {
 
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [errorMessage,setErrorMessage] = useState("");
+    const dispatch = useDispatch();
 
-    const handleLogin = () => {
+    const handleLogin = async() => {
 
      let emailValidationResult = ValidateEmail(email);
      
@@ -34,31 +38,42 @@ export default function Login({navigation}) {
 
      //Call API
 
+     let response = await HttpRequest("/users/authorize","POST",{Email:email,Password:password});
+
+
      //If BadRequest then display an error message
-     if (400)
+     if (response.status === 400)
      {
          setErrorMessage("Incorrect email or password.");
          return;
      }
-
-     //If an unauthorized response then direct to the validation page
-     else if (401)
-     {
-         //navigate to validation page   
-     }
-
      //If it's an Ok response then direct to the app main screen
-     else if (200)
+     else if (response.status === 200)
      {
-         //navigate to the app's main screen
+         try {
+             //Store user Id & token in async storage
+            await AsyncStorage.setItem('@chala', JSON.stringify(response.data))
+
+            if (response.data.isVerified == 'False')
+            {
+                navigation.navigate(SIGNUP_CODE_VERIFY);
+                return;
+            }
+
+            //navigate to the app's main screen by updating the isloggedIn redux state
+            dispatch(setApp({isLoggedIn:true}));
+
+          } catch (e) {
+            setErrorMessage("Something went wrong.")
+            return;
+          }
+    
      }
      else
      {
          setErrorMessage("Something went wrong.")
          return;
      }
-
-
     }
 
 

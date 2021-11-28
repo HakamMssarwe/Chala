@@ -56,7 +56,7 @@ export default function UpdatePassword({navigation}) {
         <ScrollView style={{width:"100%",height:"100%"}} contentContainerStyle={{justifyContent:"center",alignItems:"center",flexGrow:1}}>
         <Banner/>
         <Animated.View style={{width:"100%",height:"30%"}}>
-            <TouchableOpacity onPress={e => navigation.navigate(AUTH)}>
+            <TouchableOpacity>
             <WhiteLogo/>
             </TouchableOpacity>
         </Animated.View>

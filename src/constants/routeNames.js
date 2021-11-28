@@ -12,3 +12,7 @@ export const UPDATE_PASSWORD = "Update Password"
 
 //SIGNUP
 export const SIGNUP_CODE_SENT = "Signup Code Sent"
+
+
+//FIRST TIME SIGNING IN
+export const SIGNUP_CODE_VERIFY = "Signup Code Verify"
