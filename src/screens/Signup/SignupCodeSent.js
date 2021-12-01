@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, Text, Image } from 'react-native'
+import { useDispatch } from 'react-redux'
 import AppText from '../../components/AppText'
 import ButtonFill from '../../components/ButtonFill'
 import Container from '../../components/Container'
 import { LOGIN } from '../../constants/routeNames'
 import { COLORS } from '../../constants/themes'
+import { setApp } from '../../redux/slices/AppSlice'
 
 export default function SignupCodeSent({navigation}) {
+
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        dispatch(setApp({isLoading:false}))
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]);
+
     return (
         <Container style={{backgroundColor:COLORS.secondary,justifyContent:"center"}}>
             <Image style={{width:"50%",height:100,marginBottom:20}} source={require("../../assets/banners/paper_aircraft_banner.png")} resizeMode="contain"></Image>

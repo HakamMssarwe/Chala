@@ -16,6 +16,8 @@ import ErrorMessage from '../../components/ErrorMessage'
 import { StringIsAlphabetic, ValidateEmail, ValidatePassword } from '../../utils/functions/StaticFunctions'
 import HttpRequest from '../../utils/functions/HttpRequest'
 import AnimatedLottieView from 'lottie-react-native'
+import { useDispatch, useSelector } from 'react-redux'
+import { setApp } from '../../redux/slices/AppSlice'
 
 
 export default function Signup({navigation}) {
@@ -26,7 +28,9 @@ export default function Signup({navigation}) {
     const [password,setPassword] = useState("");
     const [confirmPassword,setConfirmPassword] = useState("");
     const [errorMessage,setErrorMessage] = useState("");
-    const [loading,setLoading] = useState(false);
+    const dispatch = useDispatch();
+    let {isLoading} = useSelector((state) => state.app)
+
 
     const handleSignup = async() =>{
     //Validation
@@ -74,12 +78,12 @@ export default function Signup({navigation}) {
     }
 
 
-    setLoading(true);
+    dispatch(setApp({isLoading:true}))
     let response = await HttpRequest("/users/create","POST",{Email:email,FirstName:firstName,LastName:lastName,Password:password})
     //409 == conflict
     if (response.status === 409)
     {
-        setLoading(false);
+        dispatch(setApp({isLoading:false}))
         setErrorMessage("This email is already in use by another member.")
         return;
     }
@@ -91,13 +95,14 @@ export default function Signup({navigation}) {
     }
     else
     {
-        setLoading(false);
+        dispatch(setApp({isLoading:false}))
         setErrorMessage("Something went wrong.");
         return;
     }
     };
 
-    return loading? <AnimatedLottieView source={require('../../assets/splash/loading.json')} autoPlay loop /> :<Container>
+    return isLoading? <AnimatedLottieView source={require('../../assets/splash/loading.json')} autoPlay loop /> :
+        <Container>
             <Banner/>
             <ScrollView style={{width:"100%",height:"100%"}} contentContainerStyle={{justifyContent:"center",alignItems:"center",flexGrow:1}}>
         <Animated.View style={{width:"100%",height:"30%"}}>

@@ -9,14 +9,15 @@ import { Text } from 'react-native';
 import AnimatedLottieView from 'lottie-react-native';
 import { View } from 'native-base';
 import { COLORS } from '../constants/themes';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 export default function AppNavContainer() {
     
     let {isLoggedIn} = useSelector((state) => state.app);
+    const [isLoading,setIsLoading] = useState(true)
     let dispatch = useDispatch();
-
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
        handleToken();
@@ -25,18 +26,23 @@ export default function AppNavContainer() {
     
     const handleToken = async() => {
 
-        setTimeout(() => {
-            setLoading(false);
-        }, 3000);
-        
-        let response = await HttpRequest("/users/IsLoggedIn","GET")
+        let response = await HttpRequest("/users/IsLoggedIn","get")
         switch (response.status)
         {
             case 200:
-                dispatch(setApp({isLoggedIn:true}))
-                break;
 
+                let jsonValue = await AsyncStorage.getItem('@chala');
+                let storageData = jsonValue != null ? await JSON.parse(jsonValue) : null;
+
+                if (storageData.isVerified != "False")
+                    dispatch(setApp({isLoggedIn:true}))
+
+                    setIsLoading(false)
+                break;
+            case 401:
+                setIsLoading(false)
+                break;
         }
     }
-    return <NavigationContainer>{loading? <AnimatedLottieView source={require('../assets/splash/loading.json')} autoPlay loop /> : isLoggedIn? <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:COLORS.primary}}><Text style={{color:COLORS.secondary}}>To be continued...</Text></View> : <AuthNavigator/>}</NavigationContainer>
+    return <NavigationContainer>{isLoading?<AnimatedLottieView source={require('../assets/splash/loading.json')} autoPlay loop />  : isLoggedIn? <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:COLORS.primary}}><Text style={{color:COLORS.secondary}}>To be continued...</Text></View> : <AuthNavigator/>}</NavigationContainer>
 }

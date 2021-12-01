@@ -4,10 +4,16 @@ const AppSlice = createSlice({
   name: "app",
   initialState: {
     isLoggedIn:false,
+    isLoading:false
   },
   reducers: {
     setApp(state, {type,payload}) {
+      if (payload.isLoggedIn != null)
       state.isLoggedIn = payload.isLoggedIn;
+
+      if (payload.isLoading != null)
+      state.isLoading = payload.isLoading;
+
     }
   }
 })

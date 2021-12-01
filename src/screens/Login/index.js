@@ -18,6 +18,7 @@ import HttpRequest from '../../utils/functions/HttpRequest'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch, useSelector } from 'react-redux'
 import { setApp } from '../../redux/slices/AppSlice'
+import AnimatedLottieView from 'lottie-react-native'
 
 export default function Login({navigation}) {
 
@@ -25,9 +26,10 @@ export default function Login({navigation}) {
     const [password,setPassword] = useState("");
     const [errorMessage,setErrorMessage] = useState("");
     const dispatch = useDispatch();
+    let {isLoading} = useSelector((state) => state.app)
 
     const handleLogin = async() => {
-
+    setErrorMessage("");
      let emailValidationResult = ValidateEmail(email);
      
      if (!emailValidationResult.isValid)
@@ -38,8 +40,10 @@ export default function Login({navigation}) {
 
      //Call API
 
-     let response = await HttpRequest("/users/authorize","POST",{Email:email,Password:password});
 
+     dispatch(setApp({isLoading:true}));
+     let response = await HttpRequest("/users/authorize","post",{Email:email,Password:password});
+     dispatch(setApp({isLoading:false}));
 
      //If BadRequest then display an error message
      if (response.status === 400)
@@ -47,18 +51,21 @@ export default function Login({navigation}) {
          setErrorMessage("Incorrect email or password.");
          return;
      }
+
      //If it's an Ok response then direct to the app main screen
      else if (response.status === 200)
      {
          try {
-             //Store user Id & token in async storage
+
             await AsyncStorage.setItem('@chala', JSON.stringify(response.data))
 
-            if (response.data.isVerified == 'False')
+            if (response.data.isVerified === 'False')
             {
                 navigation.navigate(SIGNUP_CODE_VERIFY);
                 return;
             }
+
+             //Store user Id & token in async storage
 
             //navigate to the app's main screen by updating the isloggedIn redux state
             dispatch(setApp({isLoggedIn:true}));
@@ -78,6 +85,7 @@ export default function Login({navigation}) {
 
 
     return (
+        isLoading? <AnimatedLottieView source={require('../../assets/splash/loading.json')} autoPlay loop /> :
         <Container>
         <ScrollView style={{width:"100%",height:"100%"}} contentContainerStyle={{justifyContent:"center",alignItems:"center",flexGrow:1}}>
         <Banner/>

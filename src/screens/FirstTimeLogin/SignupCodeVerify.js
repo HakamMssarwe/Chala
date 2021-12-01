@@ -16,7 +16,7 @@ import ErrorMessage from '../../components/ErrorMessage'
 import { View } from 'native-base'
 import HttpRequest from '../../utils/functions/HttpRequest'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setApp } from '../../redux/slices/AppSlice';
 import AnimatedLottieView from 'lottie-react-native'
 
@@ -40,8 +40,9 @@ export default function SignupCodeVerify({ navigation }) {
     const [selectedCell, setSelectedCell] = useState("ONE");
 
 
-    const [loading,setLoading] = useState(false);
     const dispatch = useDispatch();
+    let {isLoading} = useSelector((state) => state.app)
+
 
 
     useEffect(() => {
@@ -93,15 +94,17 @@ export default function SignupCodeVerify({ navigation }) {
                 }
         }
 
-    
-    
     const handleVerification = async() =>{
-        setLoading(true);
         try
         {
-            const jsonValue = await AsyncStorage.getItem('@chala')
-            let storageData = jsonValue != null ? JSON.parse(jsonValue) : null;
+            dispatch(setApp({isLoading:true}))
+
+
+            let jsonValue = await AsyncStorage.getItem('@chala');
+            let storageData = jsonValue != null ? await JSON.parse(jsonValue) : null;
+
             var response = await HttpRequest("/VerificationCodes/CheckVerificationCodeForEmail","POST",{Id:storageData?.id,Code:firstCell+secondCell+thirdCell+fourthCell+fifthCell})
+            dispatch(setApp({isLoading:false}))
 
             switch (response.status)
             {
@@ -109,13 +112,12 @@ export default function SignupCodeVerify({ navigation }) {
                     dispatch(setApp({isLoggedIn:true}));
                     break;
                 default:
-                    setLoading(false);
                     setErrorMessage("Invalid Code, please try again.")
                     return;
             }
         }
         catch{
-            setLoading(false);
+            dispatch(setApp({isLoading:false}))
             setErrorMessage("Something went wrong.");
             return;
         }
@@ -124,36 +126,40 @@ export default function SignupCodeVerify({ navigation }) {
 
 
     const handleResendingCode = async() =>{
-        setLoading(true);
-        const jsonValue = await AsyncStorage.getItem('@chala')
-        let storageData = jsonValue != null ? JSON.parse(jsonValue) : null;
-        var response = await HttpRequest("/VerificationCodes/GenerateVerificationCodeForEmail","POST",{Id:storageData?.id});
-        setLoading(false);
+        dispatch(setApp({isLoading:true}))
+        
+        let jsonValue = await AsyncStorage.getItem('@chala');
+        let storageData = jsonValue != null ? await JSON.parse(jsonValue) : null;
+
+        var response = await HttpRequest("/VerificationCodes/GenerateVerificationCode/" + storageData?.id,"POST");
+        console.log(response);
+        dispatch(setApp({isLoading:false}))
     }
 
-    return loading? <AnimatedLottieView source={require('../../assets/splash/loading.json')} autoPlay loop /> :<Container>
-            <ScrollView style={{ width: "100%", height: "100%" }} contentContainerStyle={{ justifyContent: "center", alignItems: "center", flexGrow: 1 }}>
-                <Banner />
-                <Animated.View style={{ width: "100%", height: "30%" }}>
-                    <TouchableOpacity onPress={e => navigation.navigate(AUTH)}>
-                        <WhiteLogo />
-                    </TouchableOpacity>
-                </Animated.View>
-                <AppText style={{ color: COLORS.secondary, width: "80%", textAlign: "center", fontSize: 16 }}>Enter the verification code that was sent to your email address in order to activate this account.</AppText>
-                <View style={style.inputCellsContainer}>
-                    <TextInput onChangeText={e => handleCellsInput(e, "ONE")} style={style.inputCell} autoFocus value={firstCell} ref={firstCellRef}/>
-                    <TextInput onChangeText={e => handleCellsInput(e, "TWO")} style={style.inputCell} value={secondCell} ref={secondCellRef}/>
-                    <TextInput onChangeText={e => handleCellsInput(e, "THREE")} style={style.inputCell} value={thirdCell} ref={thirdCellRef}/>
-                    <TextInput onChangeText={e => handleCellsInput(e, "FOUR")} style={style.inputCell} value={fourthCell} ref={fourthCellRef}/>
-                    <TextInput onChangeText={e => handleCellsInput(e, "FIVE")} style={style.inputCell} value={fifthCell} ref={fifthCellRef}/>
-                </View>
-                <ErrorMessage style={{ color: COLORS.secondary, fontSize: 18 }}>{errorMessage}</ErrorMessage>
-                <View style={{width:"100%",flexDirection:"row",justifyContent:"space-evenly",alignItems:"center"}}>
-                <ButtonFill onPress={handleVerification} style={{ width: "40%", borderColor: COLORS.primary, marginTop: "2%" }}>Verify</ButtonFill>
-                <ButtonFill onPress={handleResendingCode} style={{ width: "40%", borderColor: COLORS.primary, marginTop: "2%" }}>Resend</ButtonFill>
-                </View>
-           
-            </ScrollView>
-        </Container>
-    
+    return isLoading? <AnimatedLottieView source={require('../../assets/splash/loading.json')} autoPlay loop /> :
+            <Container>
+                    <ScrollView style={{ width: "100%", height: "100%" }} contentContainerStyle={{ justifyContent: "center", alignItems: "center", flexGrow: 1 }}>
+                        <Banner />
+                        <Animated.View style={{ width: "100%", height: "30%" }}>
+                            <TouchableOpacity>
+                                <WhiteLogo />
+                            </TouchableOpacity>
+                        </Animated.View>
+                        <AppText style={{ color: COLORS.secondary, width: "80%", textAlign: "center", fontSize: 16 }}>Enter the verification code that was sent to your email address in order to activate this account.</AppText>
+                        <View style={style.inputCellsContainer}>
+                            <TextInput onChangeText={e => handleCellsInput(e, "ONE")} style={style.inputCell} autoFocus value={firstCell} ref={firstCellRef}/>
+                            <TextInput onChangeText={e => handleCellsInput(e, "TWO")} style={style.inputCell} value={secondCell} ref={secondCellRef}/>
+                            <TextInput onChangeText={e => handleCellsInput(e, "THREE")} style={style.inputCell} value={thirdCell} ref={thirdCellRef}/>
+                            <TextInput onChangeText={e => handleCellsInput(e, "FOUR")} style={style.inputCell} value={fourthCell} ref={fourthCellRef}/>
+                            <TextInput onChangeText={e => handleCellsInput(e, "FIVE")} style={style.inputCell} value={fifthCell} ref={fifthCellRef}/>
+                        </View>
+                        <ErrorMessage style={{ color: COLORS.secondary, fontSize: 18 }}>{errorMessage}</ErrorMessage>
+                        <View style={{width:"100%",flexDirection:"row",justifyContent:"space-evenly",alignItems:"center"}}>
+                        <ButtonFill onPress={handleVerification} style={{ width: "40%", borderColor: COLORS.primary, marginTop: "2%" }}>Verify</ButtonFill>
+                        <ButtonFill onPress={handleResendingCode} style={{ width: "40%", borderColor: COLORS.primary, marginTop: "2%" }}>Resend</ButtonFill>
+                        </View>
+                
+                    </ScrollView>
+                </Container>
+            
 }
