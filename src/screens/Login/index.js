@@ -43,11 +43,12 @@ export default function Login({navigation}) {
 
      dispatch(setApp({isLoading:true}));
      let response = await HttpRequest("/users/authorize","post",{Email:email,Password:password});
-     dispatch(setApp({isLoading:false}));
+
 
      //If BadRequest then display an error message
      if (response.status === 400)
      {
+         dispatch(setApp({isLoading:false}));
          setErrorMessage("Incorrect email or password.");
          return;
      }
@@ -71,6 +72,7 @@ export default function Login({navigation}) {
             dispatch(setApp({isLoggedIn:true}));
 
           } catch (e) {
+            dispatch(setApp({isLoading:false}));
             setErrorMessage("Something went wrong.")
             return;
           }
@@ -78,6 +80,7 @@ export default function Login({navigation}) {
      }
      else
      {
+        dispatch(setApp({isLoading:false}));
          setErrorMessage("Something went wrong.")
          return;
      }

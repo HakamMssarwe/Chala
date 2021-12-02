@@ -16,3 +16,7 @@ export const SIGNUP_CODE_SENT = "Signup Code Sent"
 
 //FIRST TIME SIGNING IN
 export const SIGNUP_CODE_VERIFY = "Signup Code Verify"
+
+
+//HOME SCREENS
+export const HOME = "Home"

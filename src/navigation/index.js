@@ -10,6 +10,7 @@ import AnimatedLottieView from 'lottie-react-native';
 import { View } from 'native-base';
 import { COLORS } from '../constants/themes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import HomeNavigator from './HomeNavigator';
 
 
 
@@ -44,5 +45,5 @@ export default function AppNavContainer() {
                 break;
         }
     }
-    return <NavigationContainer>{isLoading?<AnimatedLottieView source={require('../assets/splash/loading.json')} autoPlay loop />  : isLoggedIn? <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:COLORS.primary}}><Text style={{color:COLORS.secondary}}>To be continued...</Text></View> : <AuthNavigator/>}</NavigationContainer>
+    return <NavigationContainer>{isLoading?<AnimatedLottieView source={require('../assets/splash/loading.json')} autoPlay loop />  : isLoggedIn? <HomeNavigator/>: <AuthNavigator/>}</NavigationContainer>
 }
