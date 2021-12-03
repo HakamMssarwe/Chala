@@ -20,3 +20,7 @@ export const SIGNUP_CODE_VERIFY = "Signup Code Verify"
 
 //HOME SCREENS
 export const HOME = "Home"
+export const SCHEDULE = "Schedule"
+export const ROUTINES = "Routines"
+export const EVENTS = "Events"
+export const ACCOUNT = "Account"

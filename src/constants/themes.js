@@ -1,16 +1,20 @@
 import { Dimensions } from "react-native"
-let LogoPrimary = require("../assets/images/logo_primary.png")
 let LogoSecondary = require("../assets/images/logo_secondary.png")
 let backgroundBanner = require("../assets/images/backgroundBanner.jpg")
+let schedule = require("../assets/images/HomeBanners/Schedule.png")
+let routine = require("../assets/images/HomeBanners/Routine.png")
+let event = require("../assets/images/HomeBanners/Events.png")
+let account = require("../assets/images/HomeBanners/Account.png")
 
 export const COLORS = {
-    primary:"royalblue",
-    strongPrimary:"#C7444B", //Change this to a darker royal blue version
+    primary:"#4169E1",
+    strongPrimary:"#214ED3", 
     secondary:"#FAFAFA",
     warning:"#FCC107",
     danger:"#DC3545",
     success:"#28A745",
     gray:"#6C757D",
+    orange:"#ff7f2d"
 }
 
 export const FONTS = {
@@ -29,9 +33,12 @@ export const SIZES = {
 
 
 export const Images = {
-    LogoPrimary,
     LogoSecondary,
-    backgroundBanner
+    backgroundBanner,
+    schedule,
+    routine,
+    event,
+    account
 }
 
 
