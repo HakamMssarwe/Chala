@@ -1,8 +1,11 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ACCOUNT, EVENTS, HOME, ROUTINES, SCHEDULE } from '../constants/routeNames';
+import { ACCOUNT, EVENTS, HOME, ROUTINES, SCHEDULE, TASKS } from '../constants/routeNames';
 import Home from '../screens/Home';
 import { View,Text } from 'native-base';
+import Routines from '../screens/Routines';
+import Events from '../screens/Events';
+import Tasks from '../screens/Tasks';
 
 
 
@@ -16,6 +19,7 @@ export default function HomeNavigator() {
       <Stack.Screen name={SCHEDULE} component={Schedule} />
       <Stack.Screen name={ROUTINES} component={Routines} />
       <Stack.Screen name={EVENTS} component={Events} />
+      <Stack.Screen name={TASKS} component={Tasks} />
       <Stack.Screen name={ACCOUNT} component={Account} />
     </Stack.Navigator>
   );
@@ -29,16 +33,7 @@ const Schedule = () => {
   </View>
 }
 
-const Routines = () => {
-  return <View>
-    <Text>Routines</Text>
-  </View>
-}
-const Events = () => {
-  return <View>
-    <Text>Events</Text>
-  </View>
-}
+
 const Account = () => {
   return <View>
     <Text>Account</Text>

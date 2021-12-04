@@ -4,6 +4,7 @@ let backgroundBanner = require("../assets/images/backgroundBanner.jpg")
 let schedule = require("../assets/images/HomeBanners/Schedule.png")
 let routine = require("../assets/images/HomeBanners/Routine.png")
 let event = require("../assets/images/HomeBanners/Events.png")
+let task = require("../assets/images/HomeBanners/Tasks.png")
 let account = require("../assets/images/HomeBanners/Account.png")
 
 export const COLORS = {
@@ -38,6 +39,7 @@ export const Images = {
     schedule,
     routine,
     event,
+    task,
     account
 }
 

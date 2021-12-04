@@ -5,7 +5,7 @@ import { View, Text, ScrollView,TouchableOpacity, Image, FlatList } from 'react-
 import { useDispatch, useSelector } from 'react-redux';
 import AppText from '../../components/AppText';
 import Container from '../../components/Container'
-import { ACCOUNT, EVENTS, ROUTINES, SCHEDULE } from '../../constants/routeNames';
+import { ACCOUNT, EVENTS, ROUTINES, SCHEDULE, TASKS } from '../../constants/routeNames';
 import { COLORS, SIZES, windowHeight, windowWidth } from '../../constants/themes';
 import { Images } from '../../constants/themes';
 import { setApp } from '../../redux/slices/AppSlice';
@@ -24,6 +24,7 @@ export default function Home({navigation}) {
         {image:Images.schedule,title:"My Schedule",descreption:"Being on time and having an organized schedule is one of the keys for a happy healthy life.",button:{text:"Start Planning",destination:SCHEDULE}},
         {image:Images.routine,title:"My Routines",descreption:"There are things in life we cannot skip, like work.",button:{text:"Setup",destination:ROUTINES}},
         {image:Images.event,title:"My Events",descreption:"Who doesn't love special days?",button:{text:"Add",destination:EVENTS}},
+        {image:Images.task,title:"My Tasks",descreption:"Things one's must complete.",button:{text:"Update",destination:TASKS}},
         {image:Images.account,title:"My Account",descreption:"A Little-bit of freedom.",button:{text:"Manage",destination:ACCOUNT}},
     
     ]
