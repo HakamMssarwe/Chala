@@ -12,12 +12,14 @@ import { COLORS, FONTS, Images, SIZES, Tags, windowHeight, windowWidth } from '.
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Categories } from '../../utils/Tags';
 
-export default function AddRoutine({navigation}) {
+export default function UpdateRoutine({navigation}) {
 
     const dispatch = useDispatch();
     let {isLoading} = useSelector((state) => state.app)
     const [time,setTime] = useState(new Date(0))
     const [showTime,setShowTime] = useState(false);
+
+
 
     useEffect(() => {
     console.log(time.toLocaleTimeString());
@@ -31,14 +33,13 @@ export default function AddRoutine({navigation}) {
       };
 
 
-
     return (isLoading? <AnimatedLottieView source={require('../../assets/splash/loading.json')} autoPlay loop /> :
         <Container style={{flex:1,backgroundColor:COLORS.primary,justifyContent:"center"}}>
             <TouchableOpacity style={{width:windowWidth,height:windowHeight *0.15,padding:30}} onPress={e => navigation.goBack()}>
             <AppText style={{width:"100%",color:"white",fontSize:25}}>{"<"} Chala</AppText>
             </TouchableOpacity>
             <ScrollView style={{width:"100%",backgroundColor:"white",borderTopRightRadius:35,borderTopLeftRadius:35}} contentContainerStyle={{justifyContent:"center",alignItems:"center",flexGrow:1}}>
-            <Image source={Images.read} style={{width:"80%",height:250,marginTop:"10%"}} resizeMode="contain"/>
+            <Image source={Images.collect} style={{width:"80%",height:250,marginTop:"10%"}} resizeMode="contain"/>
              <TextInput style={{ width:"80%", borderBottomWidth:1.5,borderColor:COLORS.primary,marginBottom:"5%",fontSize:SIZES.paragraph,color:COLORS.secondary,fontFamily:FONTS.normal,color:COLORS.primary}} placeholder="Routine" placeholderTextColor={COLORS.gray}/>
             <ButtonFill onPress={e => setShowTime(true)} style={{width:"80%",borderColor:COLORS.primary,buttonTextColor:COLORS.primary}}>{time.toLocaleTimeString() == new Date(0).toLocaleTimeString()? "Time" : time.toLocaleTimeString()}</ButtonFill>
             <View style={{width:"80%",marginTop:15,flexDirection:"row",justifyContent:"center",flexWrap:"wrap"}}>
@@ -59,8 +60,10 @@ export default function AddRoutine({navigation}) {
             })}
             </View>
             {showTime && <DateTimePicker value={time} onChange={handleTime} mode="time" is24Hour={true}/>}
-
-            <ButtonFill style={{width:"50%",marginTop:15,marginBottom:15,backgroundColor:COLORS.primary,buttonTextColor:"white"}}>Add</ButtonFill>
+            <View style={{width:"80%",flexDirection:"row",justifyContent:"space-around",marginBottom:15}}>
+            <ButtonFill style={{width:"45%",backgroundColor:COLORS.primary,buttonTextColor:"white",marginTop:10}}>Update</ButtonFill>
+            <ButtonFill style={{width:"45%",backgroundColor:COLORS.danger,buttonTextColor:"white",marginTop:10}}>Delete</ButtonFill>
+            </View>
             </ScrollView>
         </Container> 
     )

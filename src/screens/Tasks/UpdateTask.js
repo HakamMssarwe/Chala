@@ -24,7 +24,7 @@ export default function UpdateTask({navigation}) {
             </TouchableOpacity>
             <Image source={Images.creative} style={{width:"80%",height:"40%",marginTop:"10%"}} resizeMode="contain"/>
             <TextInput style={{ width:"80%", borderBottomWidth:1.5,borderColor:COLORS.primary,marginBottom:"5%",fontSize:SIZES.paragraph,color:COLORS.secondary,fontFamily:FONTS.normal,color:COLORS.primary}} placeholder="Task" placeholderTextColor={COLORS.gray    }/>
-            <View style={{width:"80%",flexDirection:"row",justifyContent:"space-around"}}>
+            <View style={{width:"80%",flexDirection:"row",justifyContent:"space-around",marginBottom:15}}>
             <ButtonFill style={{width:"45%",backgroundColor:COLORS.primary,buttonTextColor:"white",marginTop:10}}>Update</ButtonFill>
             <ButtonFill style={{width:"45%",backgroundColor:COLORS.danger,buttonTextColor:"white",marginTop:10}}>Delete</ButtonFill>
             </View>

@@ -12,19 +12,21 @@ let office = require("../assets/images/Banners/office.png");
 let tv = require("../assets/images/Banners/tv.png");
 let edit = require("../assets/images/Banners/edit.png");
 let creative = require("../assets/images/Banners/creative.png");
+let read = require("../assets/images/Banners/read.png");
+let collect = require("../assets/images/Banners/collect.png");
 
 
 
 
-let home = require("../assets/images/tags/house.png")
-let study = require("../assets/images/tags/book.png")
-let phoneCall = require("../assets/images/tags/call.png")
-let write = require("../assets/images/tags/edit.png")
-let heart = require("../assets/images/tags/like.png")
-let todo = require("../assets/images/tags/list.png")
-let location = require("../assets/images/tags/location.png")
-let star = require("../assets/images/tags/star.png")
+let family = require("../assets/images/tags/family.png")
+let friends = require("../assets/images/tags/friends.png")
+let home = require("../assets/images/tags/home.png")
+let meditation = require("../assets/images/tags/meditation.png")
+let meeting = require("../assets/images/tags/meeting.png")
+let trip = require("../assets/images/tags/trip.png")
 let work = require("../assets/images/tags/work.png")
+let workout = require("../assets/images/tags/workout.png")
+let yoga = require("../assets/images/tags/yoga.png")
 
 
 
@@ -70,27 +72,23 @@ export const Images = {
     office,
     tv,
     edit,
-    creative
+    creative,
+    read,
+    collect
 }
 
 
 export const Tags = {
-     home,
-     study ,
-     phoneCall,
-     write ,
-     heart,
-     todo ,
-     location ,
-     star ,
-     work 
+family,
+friends,
+home,
+meditation,
+meeting,
+trip,
+work,
+workout,
+yoga
 }
-
-
-
-
-
-
 
 export const windowWidth = Dimensions.get('window').width;
 export const windowHeight = Dimensions.get('window').height;

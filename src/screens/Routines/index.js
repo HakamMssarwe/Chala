@@ -6,8 +6,8 @@ import AppText from '../../components/AppText';
 import ButtonFill from '../../components/ButtonFill';
 import ButtonOutline from '../../components/ButtonOutline';
 import Container from '../../components/Container';
-import { HOME } from '../../constants/routeNames';
-import { COLORS, Images, SIZES, windowHeight } from '../../constants/themes';
+import { ADD_ROUTINE, HOME, UPDATE_ROUTINE } from '../../constants/routeNames';
+import { COLORS, Images, SIZES, windowHeight, windowWidth } from '../../constants/themes';
 
 export default function Routines({navigation}) {
 
@@ -34,7 +34,7 @@ export default function Routines({navigation}) {
         <AppText style={{color:"white",fontSize:25}}>{"<"} Chala</AppText>
         </TouchableOpacity>
         </View>
-        <View><ButtonFill style={{width:100,height:50}}>Add</ButtonFill></View>
+        <View><ButtonFill onPress={e => navigation.navigate(ADD_ROUTINE)} style={{width:100,height:50}}>Add</ButtonFill></View>
     </View>
     <View style={{width:"100%",height:windowHeight *0.85,backgroundColor:"white",borderTopRightRadius:35,borderTopLeftRadius:35}}>
     <View style={{width:"100%",height:"30%",alignItems:"center",padding:30}}>
@@ -43,13 +43,14 @@ export default function Routines({navigation}) {
     </View>
     <FlatList 
     style={{width:"100%",height:windowHeight * 0.25}}
-    contentContainerStyle={{alignItems:"center",justifyContent:"flex-start",flexGrow:1}}
+    numColumns={2}
+    contentContainerStyle={{alignItems:"space-between",justifyContent:"flex-start",flexGrow:1}}
     data={routines}
     renderItem={({item,index}) => {
-        return <View style={{width:"80%",borderRadius:30,flexDirection:"row",justifyContent:"space-around",alignItems:"center",height:windowHeight * 0.15,backgroundColor:COLORS.primary,marginBottom:10}}>
-            <Image style={{width:80,height:80,borderRadius:50}} source={Images.routine}/>
+        return <TouchableOpacity onLongPress={e => navigation.navigate(UPDATE_ROUTINE)} style={{width:windowWidth * 0.45,borderRadius:30,height:windowHeight * 0.2,backgroundColor:COLORS.primary,margin:10,marginBottom:10,justifyContent:"center",alignItems:"center"}}>
+            <Image style={{width:80,height:80,borderRadius:50,marginBottom:10,marginTop:5}} source={Images.routine}/>
             <AppText style={{color:"white",fontSize:20}}>{item.title}</AppText>
-            </View>
+            </TouchableOpacity>
     }}
     />
     </View>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ACCOUNT, ADD_EVENT, ADD_TASK, EVENTS, HOME, ROUTINES, SCHEDULE, TASKS, UPDATE_EVENT, UPDATE_TASK } from '../constants/routeNames';
+import { ACCOUNT, ADD_EVENT, ADD_ROUTINE, ADD_TASK, EVENTS, HOME, ROUTINES, SCHEDULE, TASKS, UPDATE_EVENT, UPDATE_ROUTINE, UPDATE_TASK } from '../constants/routeNames';
 import Home from '../screens/Home';
 import { View,Text } from 'native-base';
 import Routines from '../screens/Routines';
@@ -10,6 +10,8 @@ import AddTask from '../screens/Tasks/AddTask';
 import UpdateTask from '../screens/Tasks/UpdateTask';
 import AddEvent from '../screens/Events/AddEvent';
 import UpdateEvent from '../screens/Events/UpdateEvent';
+import AddRoutine from '../screens/Routines/AddRoutine';
+import UpdateRoutine from '../screens/Routines/UpdateRoutine';
 
 
 
@@ -29,6 +31,8 @@ export default function HomeNavigator() {
       <Stack.Screen name={UPDATE_TASK} component={UpdateTask} />
       <Stack.Screen name={ADD_EVENT} component={AddEvent} />
       <Stack.Screen name={UPDATE_EVENT} component={UpdateEvent} />
+      <Stack.Screen name={ADD_ROUTINE} component={AddRoutine} />
+      <Stack.Screen name={UPDATE_ROUTINE} component={UpdateRoutine} />
     </Stack.Navigator>
   );
 }
