@@ -6,7 +6,7 @@ import AppText from '../../components/AppText';
 import ButtonFill from '../../components/ButtonFill';
 import ButtonOutline from '../../components/ButtonOutline';
 import Container from '../../components/Container';
-import { HOME } from '../../constants/routeNames';
+import { ADD_EVENT, HOME, UPDATE_EVENT } from '../../constants/routeNames';
 import { COLORS, Images, SIZES, windowHeight } from '../../constants/themes';
 
 export default function Events({navigation}) {
@@ -34,7 +34,7 @@ export default function Events({navigation}) {
         <AppText style={{color:"white",fontSize:25}}>{"<"} Chala</AppText>
         </TouchableOpacity>
         </View>
-        <View><ButtonFill style={{width:100,height:50}}>Add</ButtonFill></View>
+        <View><ButtonFill onPress={e => navigation.navigate(ADD_EVENT)} style={{width:100,height:50}}>Add</ButtonFill></View>
     </View>
     <View style={{width:"100%",height:windowHeight *0.85,backgroundColor:"white",borderTopRightRadius:35,borderTopLeftRadius:35}}>
     <View style={{width:"100%",height:"30%",alignItems:"center",padding:30}}>
@@ -46,10 +46,10 @@ export default function Events({navigation}) {
     contentContainerStyle={{alignItems:"center",justifyContent:"flex-start",flexGrow:1}}
     data={routines}
     renderItem={({item,index}) => {
-        return <View style={{width:"80%",borderRadius:30,flexDirection:"row",justifyContent:"space-around",alignItems:"center",height:windowHeight * 0.15,backgroundColor:COLORS.primary,marginBottom:10}}>
+        return <TouchableOpacity onLongPress={e => navigation.navigate(UPDATE_EVENT)} style={{width:"80%",borderRadius:30,flexDirection:"row",justifyContent:"space-around",alignItems:"center",height:windowHeight * 0.15,backgroundColor:COLORS.primary,marginBottom:10}}>
             <Image style={{width:80,height:80,borderRadius:50}} source={Images.routine}/>
             <AppText style={{color:"white",fontSize:20}}>{item.title}</AppText>
-            </View>
+            </TouchableOpacity>
     }}
     />
     </View>

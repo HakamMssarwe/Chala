@@ -25,3 +25,13 @@ export const ROUTINES = "Routines"
 export const EVENTS = "Events"
 export const TASKS = "Tasks"
 export const ACCOUNT = "Account"
+
+
+//TASK SCREEN
+export const ADD_TASK = "Add Task"
+export const UPDATE_TASK = "Update Task"
+
+
+//EVENT SCREEN
+export const ADD_EVENT = "Add Event"
+export const UPDATE_EVENT = "Update Event"

@@ -6,7 +6,7 @@ import AppText from '../../components/AppText';
 import ButtonFill from '../../components/ButtonFill';
 import ButtonOutline from '../../components/ButtonOutline';
 import Container from '../../components/Container';
-import { HOME } from '../../constants/routeNames';
+import { ADD_TASK, HOME, UPDATE_TASK } from '../../constants/routeNames';
 import { COLORS, Images, SIZES, windowHeight } from '../../constants/themes';
 
 export default function Tasks({navigation}) {
@@ -34,7 +34,7 @@ export default function Tasks({navigation}) {
         <AppText style={{color:"white",fontSize:25}}>{"<"} Chala</AppText>
         </TouchableOpacity>
         </View>
-        <View><ButtonFill style={{width:100,height:50}}>Add</ButtonFill></View>
+        <View><ButtonFill onPress={e => navigation.navigate(ADD_TASK)} style={{width:100,height:50}}>Add</ButtonFill></View>
     </View>
     <View style={{width:"100%",height:windowHeight *0.85,backgroundColor:"white",borderTopRightRadius:35,borderTopLeftRadius:35}}>
     <View style={{width:"100%",height:"25%",alignItems:"center",padding:30}}>
@@ -46,10 +46,9 @@ export default function Tasks({navigation}) {
     contentContainerStyle={{alignItems:"center",justifyContent:"flex-start",flexGrow:1}}
     data={routines}
     renderItem={({item,index}) => {
-        return <View style={{width:"80%",borderRadius:30,flexDirection:"row",justifyContent:"space-around",alignItems:"center",height:windowHeight * 0.15,backgroundColor:COLORS.primary,marginBottom:10}}>
-            <Image style={{width:80,height:80,borderRadius:50}} source={Images.routine}/>
-            <AppText style={{color:"white",fontSize:20}}>{item.title}</AppText>
-            </View>
+        return <TouchableOpacity onLongPress={e => navigation.navigate(UPDATE_TASK)} style={{width:"85%",height:windowHeight * 0.1,borderRadius:10,flexDirection:"row",justifyContent:"flex-start",alignItems:"center",backgroundColor:COLORS.primary,marginBottom:10}}>
+            <AppText style={{color:"white",width:"100%",fontSize:20,padding:5,paddingLeft:15,textDecorationLine: 'line-through', textDecorationStyle: 'solid',textAlign:"left"}}>{item.title}</AppText>
+            </TouchableOpacity>
     }}
     />
     </View>
