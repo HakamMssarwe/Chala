@@ -46,4 +46,5 @@ export default function AppNavContainer() {
         }
     }
     return <NavigationContainer>{isLoading?<AnimatedLottieView source={require('../assets/splash/loading.json')} autoPlay loop />  : isLoggedIn? <HomeNavigator/>: <AuthNavigator/>}</NavigationContainer>
+    // return <NavigationContainer><AuthNavigator/></NavigationContainer>
 }

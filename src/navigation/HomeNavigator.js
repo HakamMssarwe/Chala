@@ -1,7 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HOME } from '../constants/routeNames';
+import { HOME, UPDATE_PASSWORD } from '../constants/routeNames';
 import Home from '../screens/Home';
+import UpdatePassword from '../screens/ForgotPassword/UpdatePassword';
 
 
 
