@@ -31,7 +31,6 @@ export default function AppNavContainer() {
         switch (response.status)
         {
             case 200:
-
                 let jsonValue = await AsyncStorage.getItem('@chala');
                 let storageData = jsonValue != null ? await JSON.parse(jsonValue) : null;
 
@@ -45,5 +44,5 @@ export default function AppNavContainer() {
                 break;
         }
     }
-    return <NavigationContainer>{/*isLoading?<AnimatedLottieView source={require('../assets/splash/loading.json')} autoPlay loop />  : isLoggedIn? <HomeNavigator/>: <AuthNavigator/>*/ <HomeNavigator/>}</NavigationContainer>
+    return <NavigationContainer>{isLoading?<AnimatedLottieView source={require('../assets/splash/loading.json')} autoPlay loop />  : isLoggedIn? <HomeNavigator/>: <AuthNavigator/>}</NavigationContainer>
 }

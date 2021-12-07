@@ -46,21 +46,27 @@ export default function SignupCodeVerify({ navigation }) {
 
 
     useEffect(() => {
+    dispatch(setApp({isLoading:false}));
+
+    },[])
+
+
+    useEffect(() => {
         switch (selectedCell) {
             case "ONE":
-                firstCellRef.current.focus();
+                firstCellRef?.current?.focus?.();
                 break;
             case "TWO":
-                secondCellRef.current.focus();
+                secondCellRef?.current?.focus?.();
                 break;
             case "THREE":
-                thirdCellRef.current.focus();
+                thirdCellRef?.current?.focus?.();
                 break;
             case "FOUR":
-                fourthCellRef.current.focus();
+                fourthCellRef?.current?.focus?.();
                 break;
             case "FIVE":
-                fifthCellRef.current.focus();
+                fifthCellRef?.current?.focus?.();
                 break;
             default:
                 Keyboard.dismiss();
@@ -103,8 +109,8 @@ export default function SignupCodeVerify({ navigation }) {
             let jsonValue = await AsyncStorage.getItem('@chala');
             let storageData = jsonValue != null ? await JSON.parse(jsonValue) : null;
 
-            var response = await HttpRequest("/VerificationCodes/CheckVerificationCodeForEmail","POST",{Id:storageData?.id,Code:firstCell+secondCell+thirdCell+fourthCell+fifthCell})
-            dispatch(setApp({isLoading:false}))
+            var response = await HttpRequest("/VerificationCodes/CheckVerificationCodeForEmail","POST",{Id:storageData?.id,Code:(firstCell+secondCell+thirdCell+fourthCell+fifthCell).toUpperCase()})
+
 
             switch (response.status)
             {
@@ -113,6 +119,7 @@ export default function SignupCodeVerify({ navigation }) {
                     break;
                 default:
                     setErrorMessage("Invalid Code, please try again.")
+                    dispatch(setApp({isLoading:false}))
                     return;
             }
         }
@@ -132,7 +139,11 @@ export default function SignupCodeVerify({ navigation }) {
         let storageData = jsonValue != null ? await JSON.parse(jsonValue) : null;
 
         var response = await HttpRequest("/VerificationCodes/GenerateVerificationCode/" + storageData?.id,"POST");
-        console.log(response);
+        setFirstCell("");
+        setSecondCell("");
+        setThirdCell("");
+        setFourthCell("");
+        setFifthCell("");
         dispatch(setApp({isLoading:false}))
     }
 
