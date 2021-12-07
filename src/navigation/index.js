@@ -31,7 +31,6 @@ export default function AppNavContainer() {
         switch (response.status)
         {
             case 200:
-
                 let jsonValue = await AsyncStorage.getItem('@chala');
                 let storageData = jsonValue != null ? await JSON.parse(jsonValue) : null;
 

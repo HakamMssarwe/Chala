@@ -20,6 +20,11 @@ export const SIGNUP_CODE_VERIFY = "Signup Code Verify"
 
 //HOME SCREENS
 export const HOME = "Home"
+<<<<<<< HEAD
+
+// Settings
+export const SETTINGS = "Settings"
+=======
 export const SCHEDULE = "Schedule"
 export const ROUTINES = "Routines"
 export const EVENTS = "Events"
@@ -40,6 +45,4 @@ export const UPDATE_EVENT = "Update Event"
 //EVENT SCREEN
 export const ADD_ROUTINE = "Add Routine"
 export const UPDATE_ROUTINE = "Update Routine"
-
-// SETTINGS SCREEN
-export const SETTINGS = "Settings"
+>>>>>>> main

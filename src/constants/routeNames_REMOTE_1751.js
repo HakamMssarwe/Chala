@@ -40,6 +40,3 @@ export const UPDATE_EVENT = "Update Event"
 //EVENT SCREEN
 export const ADD_ROUTINE = "Add Routine"
 export const UPDATE_ROUTINE = "Update Routine"
-
-// SETTINGS SCREEN
-export const SETTINGS = "Settings"
