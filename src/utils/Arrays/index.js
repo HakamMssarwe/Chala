@@ -11,3 +11,13 @@ export const Categories = [
     {tagId:7,imageSource:Tags.workout},
     {tagId:8,imageSource:Tags.yoga}
 ]
+
+export const Days = [
+    {id:0,name:"Su"},
+    {id:1,name:"Mo"},
+    {id:2,name:"Tu"},
+    {id:3,name:"We"},
+    {id:4,name:"Th"},
+    {id:5,name:"Fr"},
+    {id:6,name:"Sa"},
+]

@@ -29,6 +29,15 @@ export default function Home({navigation}) {
     
     ]
 
+
+    let handleNavigation = async(destination) =>{
+        await dispatch(setApp({isLoading:true}));
+        navigation.navigate(destination);
+
+    }
+
+
+
     return  isLoading? <AnimatedLottieView source={require('../../assets/splash/loading.json')} autoPlay loop /> :
         <Container style={{backgroundColor:"white"}}>
         <FlatList 
@@ -44,7 +53,7 @@ export default function Home({navigation}) {
         <Image source={item.image} style={{width:"100%",height:"50%"}} resizeMode="contain"/>
         <AppText style={{fontSize:22}}>{item.title}</AppText>
         <AppText style={{fontSize:16,textAlign:"center",padding:10,color:COLORS.gray}}>{item.descreption}</AppText>
-        <TouchableOpacity onPress={e => navigation.navigate(item.button.destination)} style={{width:"50%",height:50,position:"absolute",bottom:-20,borderRadius:30,justifyContent:"center",backgroundColor:COLORS.orange}}>
+        <TouchableOpacity onPress={e => handleNavigation(item.button.destination)} style={{width:"50%",height:50,position:"absolute",bottom:-20,borderRadius:30,justifyContent:"center",backgroundColor:COLORS.orange}}>
         <AppText style={{color:COLORS.secondary,textAlign:"center",fontSize:16}}>{item.button.text}</AppText>
         </TouchableOpacity>
         </View>
