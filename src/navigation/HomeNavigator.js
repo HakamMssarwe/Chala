@@ -12,6 +12,7 @@ import AddEvent from '../screens/Events/AddEvent';
 import UpdateEvent from '../screens/Events/UpdateEvent';
 import AddRoutine from '../screens/Routines/AddRoutine';
 import UpdateRoutine from '../screens/Routines/UpdateRoutine';
+import Schedule from '../screens/Shedule';
 
 
 
@@ -35,13 +36,6 @@ export default function HomeNavigator() {
       <Stack.Screen name={UPDATE_ROUTINE} component={UpdateRoutine} />
     </Stack.Navigator>
   );
-}
-
-
-const Schedule = () => {
-  return <View>
-    <Text>Schedule</Text>
-  </View>
 }
 
 

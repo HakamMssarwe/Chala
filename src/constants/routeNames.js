@@ -37,6 +37,6 @@ export const ADD_EVENT = "Add Event"
 export const UPDATE_EVENT = "Update Event"
 
 
-//EVENT SCREEN
+//ROUTINE SCREEN
 export const ADD_ROUTINE = "Add Routine"
 export const UPDATE_ROUTINE = "Update Routine"
