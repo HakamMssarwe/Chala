@@ -14,6 +14,7 @@ let edit = require("../assets/images/Banners/edit.png");
 let creative = require("../assets/images/Banners/creative.png");
 let read = require("../assets/images/Banners/read.png");
 let collect = require("../assets/images/Banners/collect.png");
+let settings = require("../assets/images/Banners/settings.png");
 
 
 
@@ -74,7 +75,8 @@ export const Images = {
     edit,
     creative,
     read,
-    collect
+    collect,
+    settings
 }
 
 

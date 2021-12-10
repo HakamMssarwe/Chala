@@ -10,7 +10,7 @@ import WhiteLogo from '../../components/WhiteLogo'
 import PrimaryLogo from '../../components/PrimaryLogo'
 import { COLORS, windowHeight } from '../../constants/themes'
 import style from './style'
-import { AUTH, LOGIN, SIGNUP, VERIFY_CODE } from '../../constants/routeNames'
+import { AUTH, LOGIN, SETTINGS, SIGNUP, VERIFY_CODE } from '../../constants/routeNames'
 import AppText from '../../components/AppText'
 import ErrorMessage from '../../components/ErrorMessage'
 import { ValidatePassword } from '../../utils/functions/StaticFunctions'
@@ -18,7 +18,7 @@ import { useDispatch } from 'react-redux'
 import { setApp } from '../../redux/slices/AppSlice'
 import HttpRequest from '../../utils/functions/HttpRequest'
 
-export default function UpdatePassword({ navigation, route }) {
+export default function UpdatePasswordSettingsScreen({ navigation, route }) {
 
     const email = route.params.Email
     const dispatch = useDispatch();
@@ -55,11 +55,12 @@ export default function UpdatePassword({ navigation, route }) {
             setErrorMessage(passwordValidationResult.errorMessage)
             return;
         }
+        console.log(email);
         let response = await HttpRequest('Users/ResetPassword', 'POST', { Email: email, Password: newPassword })
         switch (response.status) {
             case 200:
                 dispatch(setApp({ isLoading: true }))
-                navigation.navigate(LOGIN)
+                navigation.navigate(SETTINGS)
                 break;
             default:
                 setErrorMessage("Something went wrong...")

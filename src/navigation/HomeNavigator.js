@@ -13,6 +13,7 @@ import UpdateEvent from '../screens/Events/UpdateEvent';
 import AddRoutine from '../screens/Routines/AddRoutine';
 import UpdateRoutine from '../screens/Routines/UpdateRoutine';
 import UpdatePassword from '../screens/ForgotPassword/UpdatePassword';
+import Account from '../screens/Account';
 
 
 
@@ -35,6 +36,7 @@ export default function HomeNavigator() {
       <Stack.Screen name={UPDATE_EVENT} component={UpdateEvent} />
       <Stack.Screen name={ADD_ROUTINE} component={AddRoutine} />
       <Stack.Screen name={UPDATE_ROUTINE} component={UpdateRoutine} />
+
     </Stack.Navigator>
   );
 }
@@ -43,12 +45,5 @@ export default function HomeNavigator() {
 const Schedule = () => {
   return <View>
     <Text>Schedule</Text>
-  </View>
-}
-
-
-const Account = () => {
-  return <View>
-    <Text>Account</Text>
   </View>
 }
