@@ -5,6 +5,7 @@ import { View, Text, ScrollView,TouchableOpacity, Image, FlatList } from 'react-
 import { useDispatch, useSelector } from 'react-redux';
 import AppText from '../../components/AppText';
 import Container from '../../components/Container'
+import Splash from '../../components/Splash';
 import { ACCOUNT, EVENTS, ROUTINES, SCHEDULE, TASKS } from '../../constants/routeNames';
 import { COLORS, SIZES, windowHeight, windowWidth } from '../../constants/themes';
 import { Images } from '../../constants/themes';
@@ -38,7 +39,7 @@ export default function Home({navigation}) {
 
 
 
-    return  isLoading? <AnimatedLottieView source={require('../../assets/splash/loading.json')} autoPlay loop /> :
+    return  isLoading? <Splash/> :
         <Container style={{backgroundColor:"white"}}>
         <FlatList 
         style={{flex:1,height:windowHeight,width:windowWidth}}

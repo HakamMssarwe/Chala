@@ -16,6 +16,7 @@ import { EVENTS } from '../../constants/routeNames';
 import { setApp } from '../../redux/slices/AppSlice';
 import ErrorMessage from '../../components/ErrorMessage';
 import HttpRequest from '../../utils/functions/HttpRequest';
+import Splash from '../../components/Splash';
 
 export default function UpdateEvent({navigation,route:{params}}) {
 
@@ -107,7 +108,7 @@ export default function UpdateEvent({navigation,route:{params}}) {
    
 
 
-    return (isLoading? <AnimatedLottieView source={require('../../assets/splash/loading.json')} autoPlay loop /> :
+    return (isLoading? <Splash/> :
         <Container style={{flex:1,backgroundColor:COLORS.primary,justifyContent:"center"}}>
             <TouchableOpacity style={{width:windowWidth,height:windowHeight *0.15,padding:30}} onPress={handleGoBack}> 
             <AppText style={{width:"100%",color:"white",fontSize:25}}>{"<"} Chala</AppText>

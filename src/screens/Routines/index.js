@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import HttpRequest from '../../utils/functions/HttpRequest';
 import { setApp } from '../../redux/slices/AppSlice';
 import { Categories } from '../../utils/Arrays';
+import Splash from '../../components/Splash';
 
 
 export default function Routines({navigation}) {
@@ -50,7 +51,7 @@ export default function Routines({navigation}) {
 
 
 
-    return isLoading? <AnimatedLottieView source={require('../../assets/splash/loading.json')} autoPlay loop /> :
+    return isLoading? <Splash/> :
     <Container style={{flex:1,backgroundColor:COLORS.primary}}>
     <View style={{width:"100%",height:windowHeight *0.15,padding:30,flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}> 
         <View style={{flexDirection:"row",alignItems:"center"}}>

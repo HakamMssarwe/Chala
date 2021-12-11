@@ -19,6 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch, useSelector } from 'react-redux';
 import { setApp } from '../../redux/slices/AppSlice';
 import AnimatedLottieView from 'lottie-react-native'
+import Splash from '../../components/Splash'
 
 
 
@@ -147,7 +148,7 @@ export default function SignupCodeVerify({ navigation }) {
         dispatch(setApp({isLoading:false}))
     }
 
-    return isLoading? <AnimatedLottieView source={require('../../assets/splash/loading.json')} autoPlay loop /> :
+    return isLoading? <Splash/> :
             <Container>
                     <ScrollView style={{ width: "100%", height: "100%" }} contentContainerStyle={{ justifyContent: "center", alignItems: "center", flexGrow: 1 }}>
                         <Banner />

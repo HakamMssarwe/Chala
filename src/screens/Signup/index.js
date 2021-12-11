@@ -18,6 +18,8 @@ import HttpRequest from '../../utils/functions/HttpRequest'
 import AnimatedLottieView from 'lottie-react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { setApp } from '../../redux/slices/AppSlice'
+import { StatusBar } from 'native-base'
+import Splash from '../../components/Splash'
 
 
 export default function Signup({navigation}) {
@@ -101,7 +103,7 @@ export default function Signup({navigation}) {
     }
     };
 
-    return isLoading? <AnimatedLottieView source={require('../../assets/splash/loading.json')} autoPlay loop /> :
+    return isLoading?<Splash/> :
         <Container>
             <Banner/>
             <ScrollView style={{width:"100%",height:"100%"}} contentContainerStyle={{justifyContent:"center",alignItems:"center",flexGrow:1}}>
