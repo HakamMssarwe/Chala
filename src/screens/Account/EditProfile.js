@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { TextInput, TouchableOpacity, Animated, Easing, ScrollView } from 'react-native'
+import { TextInput, TouchableOpacity, Animated, Easing, ScrollView, View } from 'react-native'
 import Banner from '../../components/Banner'
 import ButtonFill from '../../components/ButtonFill'
 import ButtonOutline from '../../components/ButtonOutline'
@@ -8,7 +8,7 @@ import WhiteLogo from '../../components/WhiteLogo'
 import PrimaryLogo from '../../components/PrimaryLogo'
 import { COLORS, windowHeight } from '../../constants/themes'
 import style from './style'
-import { AUTH, LOGIN, SETTINGS, SIGNUP, SIGNUP_CODE_SENT } from '../../constants/routeNames'
+import { ACCOUNT, AUTH, LOGIN, SETTINGS, SIGNUP, SIGNUP_CODE_SENT } from '../../constants/routeNames'
 import AppText from '../../components/AppText'
 import ErrorMessage from '../../components/ErrorMessage'
 import { StringIsAlphabetic, ValidateEmail, ValidatePassword } from '../../utils/functions/StaticFunctions'
@@ -70,18 +70,22 @@ export default function EditProfile({ navigation }) {
     };
 
     return isLoading ? <AnimatedLottieView source={require('../../assets/splash/loading.json')} autoPlay loop /> :
-        <Container>
-            <Banner />
-            <ScrollView style={{ width: "100%", height: "100%" }} contentContainerStyle={{ justifyContent: "center", alignItems: "center", flexGrow: 1 }}>
-                <Animated.View style={{ width: "100%", height: "30%" }}>
-                    <TouchableOpacity onPress={e => navigation.navigate(AUTH)}>
-                        <WhiteLogo />
+        <Container style={{backgroundColor:"white"}}>
+            <View style={{width:"100%",height:windowHeight *0.15,padding:30,flexDirection:"row",justifyContent:"space-between",alignItems:"center",backgroundColor:"white"}}> 
+                <View style={{flexDirection:"row",alignItems:"center"}}>
+                    <TouchableOpacity onPress={e => navigation.navigate(ACCOUNT)}>
+                      <AppText style={{color:"white",fontSize:25,color:COLORS.primary}}>{"<"} Chala</AppText>
                     </TouchableOpacity>
+                </View>
+            </View>
+            <ScrollView style={{ width: "100%", height: windowHeight * 0.85,backgroundColor:COLORS.primary,borderTopLeftRadius:35,borderTopRightRadius:35 }} contentContainerStyle={{ justifyContent: "flex-start", alignItems: "center", flexGrow: 1 }}>
+                <Animated.View style={{ width: "100%", height: "30%",marginBottom:50 }}>
+                        <WhiteLogo />
                 </Animated.View>
-                <TextInput onChangeText={setFirstName} value={firstName} style={style.input} placeholder="First Name" placeholderTextColor={COLORS.secondary} />
-                <TextInput onChangeText={setLastName} value={lastName} style={style.input} placeholder="Last Name" placeholderTextColor={COLORS.secondary} />
-                <ErrorMessage style={{ color: COLORS.secondary, fontSize: 18, textAlign: "center" }}>{errorMessage}</ErrorMessage>
-                <ButtonFill onPress={handleEditProfile} style={{ width: "75%", borderColor: COLORS.primary, marginTop: "2%" }}>Update</ButtonFill>
+                <TextInput onChangeText={setFirstName} value={firstName} style={style.input} placeholder="First Name" placeholderTextColor={"white"} />
+                <TextInput onChangeText={setLastName} value={lastName} style={style.input} placeholder="Last Name" placeholderTextColor={"white"} />
+                <ErrorMessage style={{ color: COLORS.primary, fontSize: 18, textAlign: "center" }}>{errorMessage}</ErrorMessage>
+                <ButtonFill onPress={handleEditProfile} style={{ width: "75%", borderColor: "white",backgroundColor:"white", marginTop: "2%",buttonTextColor:COLORS.primary,borderRadius:5}}>Update</ButtonFill>
             </ScrollView>
         </Container>
 }

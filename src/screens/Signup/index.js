@@ -106,8 +106,8 @@ export default function Signup({navigation}) {
     return isLoading?<Splash/> :
         <Container>
             <Banner/>
-            <ScrollView style={{width:"100%",height:"100%"}} contentContainerStyle={{justifyContent:"center",alignItems:"center",flexGrow:1}}>
-        <Animated.View style={{width:"100%",height:"30%"}}>
+         <ScrollView style={{width:"100%",height:"100%"}} contentContainerStyle={{flex:1,justifyContent:"flex-start",alignItems:"center",flexGrow:1}}>
+        <Animated.View style={{width:"100%",height:"30%",marginTop:-30,marginBottom:30}}>
             <TouchableOpacity onPress={e => navigation.navigate(AUTH)}>
             <WhiteLogo/>
             </TouchableOpacity>

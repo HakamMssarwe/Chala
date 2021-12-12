@@ -98,7 +98,7 @@ export default function Login({navigation}) {
         <Container>
         <ScrollView style={{width:"100%",height:"100%"}} contentContainerStyle={{justifyContent:"center",alignItems:"center",flexGrow:1}}>
         <Banner/>
-        <Animated.View style={{width:"100%",height:"30%"}}>
+        <Animated.View style={{width:"100%",height:"30%",marginTop:-30,marginBottom:30}}>
             <TouchableOpacity onPress={e => navigation.navigate(AUTH)}>
             <WhiteLogo/>
             </TouchableOpacity>

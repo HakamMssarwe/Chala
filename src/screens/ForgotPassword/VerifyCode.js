@@ -102,7 +102,7 @@ const handleVerification = async () => {
         return;
     }
 
-    let response = await HttpRequest('/ForgotPassword/CheckForgotPasswordCode','POST', { Email: email, Code: firstCell + secondCell + thirdCell + fourthCell + fifthCell })
+    let response = await HttpRequest('/ForgotPassword/CheckForgotPasswordCode','POST', { Email: email, Code: (firstCell+secondCell+thirdCell+fourthCell+fifthCell).toUpperCase() })
     console.log(response);
     switch (response.status) {
         case 200:

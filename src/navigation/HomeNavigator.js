@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ACCOUNT, ADD_EVENT, ADD_ROUTINE, ADD_TASK, EVENTS, HOME, ROUTINES, SCHEDULE, TASKS, UPDATE_EVENT, UPDATE_ROUTINE, UPDATE_TASK } from '../constants/routeNames';
+import { ACCOUNT, ADD_EVENT, ADD_ROUTINE, ADD_TASK, EDIT_PROFILE, EVENTS, HOME, ROUTINES, SCHEDULE, TASKS, UPDATE_EVENT, UPDATE_PASSWORD_SETTINGS_SCREEN, UPDATE_ROUTINE, UPDATE_TASK } from '../constants/routeNames';
 import Home from '../screens/Home';
 import { View,Text } from 'native-base';
 import Routines from '../screens/Routines';
@@ -14,6 +14,8 @@ import AddRoutine from '../screens/Routines/AddRoutine';
 import UpdateRoutine from '../screens/Routines/UpdateRoutine';
 import Schedule from '../screens/Shedule';
 import Account from '../screens/Account';
+import UpdatePasswordSettingsScreen from '../screens/Account/UpdatePassword';
+import EditProfile from '../screens/Account/EditProfile';
 
 
 
@@ -36,6 +38,8 @@ export default function HomeNavigator() {
       <Stack.Screen name={UPDATE_EVENT} component={UpdateEvent} />
       <Stack.Screen name={ADD_ROUTINE} component={AddRoutine} />
       <Stack.Screen name={UPDATE_ROUTINE} component={UpdateRoutine} />
+      <Stack.Screen name={UPDATE_PASSWORD_SETTINGS_SCREEN} component={UpdatePasswordSettingsScreen} />
+      <Stack.Screen name={EDIT_PROFILE} component={EditProfile} />
 
     </Stack.Navigator>
   );

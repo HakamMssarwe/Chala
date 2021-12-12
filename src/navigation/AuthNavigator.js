@@ -9,9 +9,7 @@ import VerifyCode from '../screens/ForgotPassword/VerifyCode';
 import UpdatePassword from '../screens/ForgotPassword/UpdatePassword';
 import SignupCodeSent from '../screens/Signup/SignupCodeSent';
 import SignupCodeVerify from '../screens/FirstTimeLogin/SignupCodeVerify';
-import EditProfile from '../screens/Account/EditProfile';
-import UpdatePasswordSettingsScreen from '../screens/Account/UpdatePassword';
-import Schedule from '../screens/Schedule';
+
 
 const Stack = createStackNavigator();
 
@@ -26,10 +24,6 @@ export default function AuthNavigator() {
       <Stack.Screen name={UPDATE_PASSWORD} component={UpdatePassword} />
       <Stack.Screen name={SIGNUP_CODE_SENT} component={SignupCodeSent} />
       <Stack.Screen name={SIGNUP_CODE_VERIFY} component={SignupCodeVerify} />
-      <Stack.Screen name={EDIT_PROFILE} component={EditProfile} />
-      <Stack.Screen name={UPDATE_PASSWORD_SETTINGS_SCREEN} component={UpdatePasswordSettingsScreen} />
-      <Stack.Screen name={SCHEDULE} component={Schedule} />
-      
     </Stack.Navigator>
   );
 }

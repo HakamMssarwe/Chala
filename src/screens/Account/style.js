@@ -13,12 +13,11 @@ export default {
     input:{
         width:"80%",
         borderBottomWidth:1.5,
-        borderColor:COLORS.secondary,
-        marginBottom:"5%",
+        borderColor:"white",
+        marginBottom:30,
         fontSize:SIZES.paragraph,
         color:COLORS.secondary,
         fontFamily:FONTS.normal,
-        fontWeight:"bold"
     },
     containerButtons:{
         width:"100%",

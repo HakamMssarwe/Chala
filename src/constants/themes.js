@@ -1,5 +1,5 @@
 import { Dimensions } from "react-native"
-let LogoSecondary = require("../assets/images/logo_secondary.png")
+let LogoPrimary = require("../assets/images/logo.png")
 let backgroundBanner = require("../assets/images/backgroundBanner.jpg")
 let schedule = require("../assets/images/HomeBanners/Schedule.png")
 let routine = require("../assets/images/HomeBanners/Routine.png")
@@ -63,7 +63,7 @@ export const SIZES = {
 
 
 export const Images = {
-    LogoSecondary,
+    LogoPrimary,
     backgroundBanner,
     schedule,
     routine,

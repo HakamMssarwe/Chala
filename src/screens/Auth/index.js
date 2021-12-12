@@ -41,7 +41,7 @@ export default function Auth({navigation}) {
         <Container>
         <ScrollView style={{width:"100%",height:windowHeight}} contentContainerStyle={{flex:1,justifyContent:"center"}}>
         <Banner/>
-        <Animated.View style={{width:"100%",height:"30%"}}>
+        <Animated.View style={{width:"100%",height:"30%",marginTop:-200}}>
             <TouchableOpacity>
             <WhiteLogo/>
             </TouchableOpacity>
