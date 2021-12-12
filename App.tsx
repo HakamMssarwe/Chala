@@ -14,7 +14,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NativeBaseProvider>
-     <AppNavContainer></AppNavContainer>
+          <AppNavContainer></AppNavContainer>
       </NativeBaseProvider>
     </Provider>
   )

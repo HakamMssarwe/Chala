@@ -29,6 +29,11 @@ export default function Login({navigation}) {
     const dispatch = useDispatch();
     let {isLoading} = useSelector((state) => state.app)
 
+    useEffect(()=>{
+        dispatch(setApp({isLoading:false}))
+    }
+    ,[])
+
     const handleLogin = async() => {
     setErrorMessage("");
      let emailValidationResult = ValidateEmail(email);

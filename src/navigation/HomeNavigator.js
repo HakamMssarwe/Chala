@@ -13,6 +13,8 @@ import UpdateEvent from '../screens/Events/UpdateEvent';
 import AddRoutine from '../screens/Routines/AddRoutine';
 import UpdateRoutine from '../screens/Routines/UpdateRoutine';
 import Schedule from '../screens/Shedule';
+import Account from '../screens/Account';
+
 
 
 
@@ -34,13 +36,9 @@ export default function HomeNavigator() {
       <Stack.Screen name={UPDATE_EVENT} component={UpdateEvent} />
       <Stack.Screen name={ADD_ROUTINE} component={AddRoutine} />
       <Stack.Screen name={UPDATE_ROUTINE} component={UpdateRoutine} />
+
     </Stack.Navigator>
   );
 }
 
 
-const Account = () => {
-  return <View>
-    <Text>Account</Text>
-  </View>
-}

@@ -41,3 +41,7 @@ export const UPDATE_EVENT = "Update Event"
 export const ADD_ROUTINE = "Add Routine"
 export const UPDATE_ROUTINE = "Update Routine"
 
+// ACCOUNT SCREEN
+export const EDIT_PROFILE = "Edit Profile"
+export const UPDATE_PASSWORD_SETTINGS_SCREEN = "Update Password Settings Screen"
+
