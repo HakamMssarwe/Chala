@@ -46,7 +46,7 @@ export default function AddEvent({navigation,route:{params}}) {
 
       let handleGoBack = () => {
         dispatch(setApp({isLoading:true}));
-        navigation.replace(EVENTS)
+        navigation.replace(params.route)
        }
 
       const handleAddingEvent = async() => {
@@ -74,7 +74,7 @@ export default function AddEvent({navigation,route:{params}}) {
           }
 
 
-          var response = await HttpRequest("/Event/CreateEvent","post",{Title:title,UserId:params,TagId:selectedTag,StartHour:time.getTime(),Date:date.toJSON()})
+          var response = await HttpRequest("/Event/CreateEvent","post",{Title:title,UserId:params.userId,TagId:selectedTag,StartHour:time.getTime(),Date:date.toJSON()})
 
 
           if (response.status != 200)
@@ -86,7 +86,7 @@ export default function AddEvent({navigation,route:{params}}) {
           }
 
           setTitle("");
-          navigation.replace(EVENTS)
+          navigation.replace(params.route)
       }
 
 

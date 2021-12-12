@@ -6,8 +6,8 @@ import AppText from '../../components/AppText';
 import ButtonFill from '../../components/ButtonFill';
 import ButtonOutline from '../../components/ButtonOutline';
 import Container from '../../components/Container';
-import { ADD_EVENT, HOME, UPDATE_EVENT } from '../../constants/routeNames';
-import { COLORS, Images, SIZES, windowHeight } from '../../constants/themes';
+import { ADD_EVENT, EVENTS, HOME, UPDATE_EVENT } from '../../constants/routeNames';
+import { COLORS, Images, SIZES, windowHeight, windowWidth } from '../../constants/themes';
 import { setApp } from '../../redux/slices/AppSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HttpRequest from '../../utils/functions/HttpRequest';
@@ -57,7 +57,7 @@ export default function Events({navigation}) {
         <AppText style={{color:"white",fontSize:25}}>{"<"} Chala</AppText>
         </TouchableOpacity>
         </View>
-        <View><ButtonFill onPress={e => navigation.replace(ADD_EVENT,userId)} style={{width:100,height:50}}>Add</ButtonFill></View>
+        <View><ButtonFill onPress={e => navigation.replace(ADD_EVENT,{userId:userId,route:EVENTS})} style={{width:100,height:50}}>Add</ButtonFill></View>
     </View>
     <View style={{width:"100%",height:windowHeight *0.85,backgroundColor:"white",borderTopRightRadius:35,borderTopLeftRadius:35}}>
     <View style={{width:"100%",height:"30%",alignItems:"center",padding:30}}>
@@ -69,9 +69,9 @@ export default function Events({navigation}) {
     contentContainerStyle={{alignItems:"center",justifyContent:"flex-start",flexGrow:1}}
     data={events}
     renderItem={({item,index}) => {
-        return <TouchableOpacity onLongPress={e => navigation.replace(UPDATE_EVENT,item)} style={{width:"80%",borderRadius:30,flexDirection:"row",justifyContent:"space-around",alignItems:"center",height:windowHeight * 0.15,backgroundColor:COLORS.primary,marginBottom:10}}>
+        return <TouchableOpacity onLongPress={e => navigation.replace(UPDATE_EVENT,{...item,route:EVENTS})} style={{width:windowWidth * 0.9,borderRadius:30,flexDirection:"row",justifyContent:"center",alignItems:"center",height:windowHeight * 0.15,backgroundColor:COLORS.primary,marginBottom:10}}>
             <Image style={{width:80,height:80,borderRadius:50}} source={Categories[item.tagId].imageSource}/>
-            <AppText style={{color:"white",fontSize:20}}>{item.title}</AppText>
+            <AppText style={{width:"60%",color:"white",fontSize:20,textAlign:"center"}}>{item.title}</AppText>
             </TouchableOpacity>
     }}
     />

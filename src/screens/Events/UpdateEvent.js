@@ -46,7 +46,7 @@ export default function UpdateEvent({navigation,route:{params}}) {
 
       let handleGoBack = () => {
         dispatch(setApp({isLoading:true}));
-        navigation.replace(EVENTS)
+        navigation.replace(params.route)
        }
 
 
@@ -103,7 +103,7 @@ export default function UpdateEvent({navigation,route:{params}}) {
             return;
         }
    
-        navigation.replace(EVENTS);
+        navigation.replace(params.route);
        }
    
 

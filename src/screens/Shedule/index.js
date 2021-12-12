@@ -4,7 +4,7 @@ import { FlatList, Image, ScrollView, TouchableOpacity, View } from 'react-nativ
 import { useDispatch, useSelector } from 'react-redux';
 import AppText from '../../components/AppText';
 import Container from '../../components/Container'
-import { ROUTINES, SCHEDULE } from '../../constants/routeNames';
+import { ADD_EVENT,  EVENTS, ROUTINES, SCHEDULE, UPDATE_EVENT, UPDATE_ROUTINE } from '../../constants/routeNames';
 import { COLORS, Images, windowHeight, windowWidth } from '../../constants/themes'
 import { setApp } from '../../redux/slices/AppSlice';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import HttpRequest from '../../utils/functions/HttpRequest';
 import { StatusBar } from 'native-base';
 import Splash from '../../components/Splash';
+import ButtonFill from '../../components/ButtonFill';
 
 
 export default function Schedule({navigation}) {
@@ -136,12 +137,19 @@ export default function Schedule({navigation}) {
                 }}
                 />
             </View>:
-            data.length == 0?  <AppText style={{color:COLORS.gray,textAlign:"center"}}>{message}</AppText> :
-            <ScrollView style={{width:"100%",height:windowHeight,borderTopRightRadius:35,borderTopLeftRadius:35}} 
+            data.length == 0?  
+            <>
+            <ButtonFill onPress={e => navigation.replace(ADD_EVENT,{userId:userId,route:SCHEDULE})} style={{width:"75%",marginBottom:10,borderRadius:15,height:windowHeight * 0.08,alignSelf:"center",borderColor:COLORS.orange,backgroundColor:COLORS.orange,marginTop:"2%",buttonTextColor:"white"}}>Add Event</ButtonFill>
+            <AppText style={{color:COLORS.gray,textAlign:"center"}}>{message}</AppText>
+            </>
+             :
+            <>
+            <ButtonFill onPress={e => navigation.replace(ADD_EVENT,{userId:userId,route:SCHEDULE})} style={{width:"75%",marginBottom:10,borderRadius:15,height:windowHeight * 0.08,alignSelf:"center",borderColor:COLORS.orange,backgroundColor:COLORS.orange,marginTop:"2%",buttonTextColor:"white"}}>Add Event</ButtonFill>
+            <ScrollView style={{width:"100%",height:windowHeight * 0.75 ,borderTopRightRadius:35,borderTopLeftRadius:35}} 
             nestedScrollEnabled
             ref={scrollViewRef}
             >
-                {data.map(item => {
+                {data.sort((a,b) => a.timeInMinutes - b.timeInMinutes).map(item => {
 
                     let time = new Date(parseFloat(item.startHour))
                     let hours = time.getHours();
@@ -152,9 +160,8 @@ export default function Schedule({navigation}) {
                     minutes = minutes < 10 ? '0'+minutes : minutes;
                     let strTime = hours + ':' + minutes + ' ' + ampm;
 
-
-                    return <TouchableOpacity style={{flexDirection:"row",alignItems:"center",justifyContent:"center",backgroundColor:"white",borderRadius:35,margin:10,borderWidth:1,borderColor:COLORS.primary,padding:5}} key={item.id}>
-                    <Image source={Categories[item.tagId].imageSource} alt="banner" style={{width:"50%",height:130,borderRadius:25}} />
+                    return <TouchableOpacity onLongPress={e => navigation.replace(item.type === 0? UPDATE_ROUTINE : UPDATE_EVENT ,{...item,route:SCHEDULE})} style={{flexDirection:"row",alignItems:"center",justifyContent:"center",backgroundColor:"white",width:windowWidth*0.95,height:windowHeight * 0.2,alignSelf:"center",borderRadius:30,margin:10,borderWidth:1,borderColor:COLORS.primary,padding:5}} key={item.id}>
+                    <Image source={Categories[item.tagId].imageSource} alt="banner" style={{width:"50%",height:110,borderRadius:25}} />
                     <View style={{width:"50%",justifyContent:"center",alignItems:"center",padding:10}}>
                     <AppText style={{color:COLORS.primary,fontSize:25,textAlign:"center"}}>{item.title}</AppText>
                     <AppText style={{textAlign:"center",fontSize:22,color:COLORS.orange,textAlign:"center"}}>{strTime}</AppText>
@@ -162,6 +169,7 @@ export default function Schedule({navigation}) {
                 </TouchableOpacity>
                 })}
             </ScrollView>
+            </>
         }}
         />
 

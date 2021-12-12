@@ -43,7 +43,7 @@ export default function UpdateRoutine({navigation,route:{params}}) {
 
       let handleGoBack = () => {
         dispatch(setApp({isLoading:true}));
-        navigation.replace(ROUTINES)
+        navigation.replace(params.route)
        }
 
 
@@ -156,7 +156,7 @@ export default function UpdateRoutine({navigation,route:{params}}) {
         }
 
         setTitle("");
-        navigation.replace(ROUTINES)
+        navigation.replace(params.route)
     }
 
 
