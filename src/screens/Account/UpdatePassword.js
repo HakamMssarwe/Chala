@@ -64,7 +64,7 @@ export default function UpdatePasswordSettingsScreen({ navigation, route }) {
         switch (response.status) {
             case 200:
                 dispatch(setApp({ isLoading: true }))
-                navigation.navigate(SETTINGS)
+                navigation.navigate(ACCOUNT)
                 break;
             default:
                 setErrorMessage("Something went wrong...")

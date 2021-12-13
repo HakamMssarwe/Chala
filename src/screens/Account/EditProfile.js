@@ -59,7 +59,7 @@ export default function EditProfile({ navigation }) {
         let response = await HttpRequest("/users/EditUserById", "POST", { Id: storageData.id, FirstName: firstName, LastName: lastName })
 
         if (response.status === 200) {
-            navigation.navigate(SETTINGS);
+            navigation.navigate(ACCOUNT);
             return;
         }
         else {
