@@ -12,10 +12,10 @@ import AddEvent from '../screens/Events/AddEvent';
 import UpdateEvent from '../screens/Events/UpdateEvent';
 import AddRoutine from '../screens/Routines/AddRoutine';
 import UpdateRoutine from '../screens/Routines/UpdateRoutine';
-import Schedule from '../screens/Shedule';
 import Account from '../screens/Account';
 import UpdatePasswordSettingsScreen from '../screens/Account/UpdatePassword';
 import EditProfile from '../screens/Account/EditProfile';
+import Schedule from '../screens/Schedule';
 
 
 

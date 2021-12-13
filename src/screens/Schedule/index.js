@@ -138,10 +138,10 @@ export default function Schedule({navigation}) {
                 />
             </View>:
             data.length == 0?  
-            <>
+            <View style={{width:"100%",height:windowHeight}}>
             <ButtonFill onPress={e => navigation.replace(ADD_EVENT,{userId:userId,route:SCHEDULE})} style={{width:"75%",marginBottom:10,borderRadius:15,height:windowHeight * 0.08,alignSelf:"center",borderColor:COLORS.orange,backgroundColor:COLORS.orange,marginTop:"2%",buttonTextColor:"white"}}>Add Event</ButtonFill>
             <AppText style={{color:COLORS.gray,textAlign:"center"}}>{message}</AppText>
-            </>
+            </View>
              :
             <>
             <ButtonFill onPress={e => navigation.replace(ADD_EVENT,{userId:userId,route:SCHEDULE})} style={{width:"75%",marginBottom:10,borderRadius:15,height:windowHeight * 0.08,alignSelf:"center",borderColor:COLORS.orange,backgroundColor:COLORS.orange,marginTop:"2%",buttonTextColor:"white"}}>Add Event</ButtonFill>
